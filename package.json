@@ -1,6 +1,6 @@
 {
   "name": "react-user-activity-tracker",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Tracks how long a state has been active",
   "main": "dist/index.js",
   "scripts": {
@@ -19,8 +19,8 @@
     "@types/react-dom": "^17.0.9",
     "babel-core": "^6.26.3",
     "babel-runtime": "^6.26.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
+    "react": "^16.8.0",
+    "react-dom": "^16.8.0",
     "rollup": "^2.58.0",
     "rollup-plugin-typescript2": "^0.30.0",
     "typescript": "^4.4.4"
