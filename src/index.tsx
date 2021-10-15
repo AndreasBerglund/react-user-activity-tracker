@@ -70,7 +70,8 @@ const App: React.FC<IActivityTrackerProps> = ({
   return (
     <div
       style={{
-        position: "absolute",
+        position: "fixed",
+        zIndex: 999,
         bottom: 20,
         right: 20,
         padding: 20,

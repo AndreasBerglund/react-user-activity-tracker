@@ -83,7 +83,8 @@ var App = function (_a) {
         };
     }, [trackerId, timedOut]);
     return (React__namespace.createElement("div", { style: {
-            position: "absolute",
+            position: "fixed",
+            zIndex: 999,
             bottom: 20,
             right: 20,
             padding: 20,
