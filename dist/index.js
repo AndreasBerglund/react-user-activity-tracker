@@ -91,7 +91,7 @@ var App = function (_a) {
     }, [trackerId, timedOut]);
     //submit change every x second
     useEffect(function () {
-        if (timer >= trackerSubmitInterval || 5) {
+        if (timer >= trackerSubmitInterval && trackerSubmitInterval) {
             onTrackerIdChange(trackerId, timer);
             setTimer(0);
         }

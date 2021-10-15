@@ -1,6 +1,6 @@
 {
   "name": "react-user-activity-tracker",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Tracks how long a state has been active",
   "main": "dist/index.js",
   "scripts": {

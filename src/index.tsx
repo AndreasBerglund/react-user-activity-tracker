@@ -71,7 +71,7 @@ const App: React.FC<IActivityTrackerProps> = ({
 
   //submit change every x second
   useEffect(() => {
-    if( timer >= trackerSubmitInterval || 5) {
+    if( timer >= trackerSubmitInterval && trackerSubmitInterval ) {
       onTrackerIdChange(trackerId, timer);
       setTimer(0);
     }
