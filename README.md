@@ -36,3 +36,6 @@ number, time in seconds when tracking should stop. Default 1800 seconds ( 30 min
 
 ### debugOn
 boolean, display a box with values.
+
+### trackerSubmitInterval
+number, second passed between each onTrackerIdChange function

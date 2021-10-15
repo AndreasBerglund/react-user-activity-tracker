@@ -9,6 +9,7 @@ import { getStorage, setStorage } from "./storage";
 export type IActivityTrackerProps = {
   trackerId: number;
   timeout: number;
+  trackerSubmitInterval: number;
   onTrackerIdChange: Function;
   debugOn: boolean;
 };
@@ -17,6 +18,7 @@ const App: React.FC<IActivityTrackerProps> = ({
   trackerId,
   onTrackerIdChange,
   timeout,
+  trackerSubmitInterval,
   debugOn,
 }) => {
   const [timer, setTimer] = useState(0);
@@ -66,6 +68,14 @@ const App: React.FC<IActivityTrackerProps> = ({
       clearInterval(interval);
     };
   }, [trackerId, timedOut]);
+
+  //submit change every x second
+  useEffect(() => {
+    if( timer >= trackerSubmitInterval || 5) {
+      onTrackerIdChange(trackerId, timer);
+      setTimer(0);
+    }
+  }, [timer])
 
   return (
     <div
