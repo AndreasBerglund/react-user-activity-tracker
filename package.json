@@ -1,6 +1,6 @@
 {
   "name": "react-user-activity-tracker",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Tracks how long a state has been active",
   "main": "dist/index.js",
   "scripts": {
@@ -8,8 +8,12 @@
     "start": "rollup -c -w",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AndreasBerglund/react-user-activity-tracker"
+  },
   "author": "Andreas Berglund",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "@types/react": "^17.0.30",
     "@types/react-dom": "^17.0.9",
