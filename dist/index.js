@@ -43,10 +43,10 @@ var useState = React__namespace.useState, useEffect = React__namespace.useEffect
 var App = function (_a) {
     var trackerId = _a.trackerId, onTrackerIdChange = _a.onTrackerIdChange, timeout = _a.timeout, debugOn = _a.debugOn;
     var _b = useState(0), timer = _b[0], setTimer = _b[1];
-    var _c = useState(timeout || 30 * 60 * 60), countdown = _c[0], setCountdown = _c[1];
+    var _c = useState(timeout || 30 * 60), countdown = _c[0], setCountdown = _c[1];
     var _d = useState(false), timedOut = _d[0], setTimedOut = _d[1];
     var onUserActivity = function () {
-        setCountdown(timeout || 30 * 60 * 60);
+        setCountdown(timeout || 30 * 60);
     };
     useEffect(function () {
         addTrackingEventListeners(onUserActivity);

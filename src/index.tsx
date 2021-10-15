@@ -20,11 +20,11 @@ const App: React.FC<IActivityTrackerProps> = ({
   debugOn,
 }) => {
   const [timer, setTimer] = useState(0);
-  const [countdown, setCountdown] = useState(timeout || 30 * 60 * 60);
+  const [countdown, setCountdown] = useState(timeout || 30 * 60);
   const [timedOut, setTimedOut] = useState(false);
 
   const onUserActivity = () => {
-    setCountdown(timeout || 30 * 60 * 60);
+    setCountdown(timeout || 30 * 60);
   };
 
   useEffect(() => {

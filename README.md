@@ -32,7 +32,7 @@ number, the identifier for the state being tracked.
 function, fired when trackedId changes, get the trackerid and the time is has been active/viewed in seconds.
 
 ### timeout
-number, time in seconds when tracking should stop. Default 3000 seconds ( 30 minutes ).
+number, time in seconds when tracking should stop. Default 1800 seconds ( 30 minutes ).
 
 ### debugOn
 boolean, display a box with values.
