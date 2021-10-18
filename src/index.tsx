@@ -2,7 +2,7 @@ import * as React from "react";
 const { useState, useEffect } = React;
 import {
   addTrackingEventListeners,
-  removeTrackingEventListeners,
+  removeTrackingEventListeners
 } from "./events";
 import { getStorage, setStorage } from "./storage";
 
@@ -11,6 +11,7 @@ export type IActivityTrackerProps = {
   timeout: number;
   trackerSubmitInterval: number;
   onTrackerIdChange: Function;
+  onIntervalSubmit: Function;
   debugOn: boolean;
 };
 
@@ -19,13 +20,15 @@ const App: React.FC<IActivityTrackerProps> = ({
   onTrackerIdChange,
   timeout,
   trackerSubmitInterval,
+  onIntervalSubmit,
   debugOn,
 }) => {
   const [timer, setTimer] = useState(0);
   const [countdown, setCountdown] = useState(timeout || 30 * 60);
   const [timedOut, setTimedOut] = useState(false);
 
-  const onUserActivity = () => {
+  const onUserActivity = (e:Event) => {
+    if ( e.type && e.type === 'blur') { setCountdown(0); return; } //window on blur
     setCountdown(timeout || 30 * 60);
   };
 
@@ -71,8 +74,8 @@ const App: React.FC<IActivityTrackerProps> = ({
 
   //submit change every x second
   useEffect(() => {
-    if( timer >= trackerSubmitInterval && trackerSubmitInterval ) {
-      onTrackerIdChange(trackerId, timer);
+    if( timer >= trackerSubmitInterval && trackerSubmitInterval && onIntervalSubmit ) {
+      onIntervalSubmit(trackerId, timer);
       setTimer(0);
     }
   }, [timer])

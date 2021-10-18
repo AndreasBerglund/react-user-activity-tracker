@@ -28,14 +28,23 @@ var addTrackingEventListeners = function (onEventFunction) {
     INPUT_EVENT_NAMES.forEach(function (eventName) {
         return document.body.addEventListener(eventName, function (e) { return onEventFunction(e); }, false);
     });
-    window.onbeforeunload = function (e) {
+    window.addEventListener("blur", function (e) {
         onEventFunction(e);
-    };
+    }, false);
+    window.addEventListener("focus", function (e) {
+        onEventFunction(e);
+    }, false);
 };
 var removeTrackingEventListeners = function (onEventFunction) {
     INPUT_EVENT_NAMES.forEach(function (eventName) {
-        return document.body.removeEventListener(eventName, function (e) { return onEventFunction(e); }, false);
+        return document.body.removeEventListener(eventName, function () { return onEventFunction(); }, false);
     });
+    window.removeEventListener("blur", function (e) {
+        onEventFunction(e);
+    }, false);
+    window.removeEventListener("focus", function (e) {
+        onEventFunction(e);
+    }, false);
 };
 
 var STORAGE_ID = "trackerIdValue";
@@ -48,11 +57,15 @@ var getStorage = function () {
 
 var useState = React__namespace.useState, useEffect = React__namespace.useEffect;
 var App = function (_a) {
-    var trackerId = _a.trackerId, onTrackerIdChange = _a.onTrackerIdChange, timeout = _a.timeout, trackerSubmitInterval = _a.trackerSubmitInterval, debugOn = _a.debugOn;
+    var trackerId = _a.trackerId, onTrackerIdChange = _a.onTrackerIdChange, timeout = _a.timeout, trackerSubmitInterval = _a.trackerSubmitInterval, onIntervalSubmit = _a.onIntervalSubmit, debugOn = _a.debugOn;
     var _b = useState(0), timer = _b[0], setTimer = _b[1];
     var _c = useState(timeout || 30 * 60), countdown = _c[0], setCountdown = _c[1];
     var _d = useState(false), timedOut = _d[0], setTimedOut = _d[1];
-    var onUserActivity = function () {
+    var onUserActivity = function (e) {
+        if (e.type && e.type === 'blur') {
+            setCountdown(0);
+            return;
+        } //window on blur
         setCountdown(timeout || 30 * 60);
     };
     useEffect(function () {
@@ -91,8 +104,8 @@ var App = function (_a) {
     }, [trackerId, timedOut]);
     //submit change every x second
     useEffect(function () {
-        if (timer >= trackerSubmitInterval && trackerSubmitInterval) {
-            onTrackerIdChange(trackerId, timer);
+        if (timer >= trackerSubmitInterval && trackerSubmitInterval && onIntervalSubmit) {
+            onIntervalSubmit(trackerId, timer);
             setTimer(0);
         }
     }, [timer]);

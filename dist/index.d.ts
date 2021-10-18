@@ -4,6 +4,7 @@ export declare type IActivityTrackerProps = {
     timeout: number;
     trackerSubmitInterval: number;
     onTrackerIdChange: Function;
+    onIntervalSubmit: Function;
     debugOn: boolean;
 };
 declare const App: React.FC<IActivityTrackerProps>;
